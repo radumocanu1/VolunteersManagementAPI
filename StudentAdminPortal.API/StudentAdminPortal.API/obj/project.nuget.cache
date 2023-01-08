@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "25GPTxq9ebOWJE+Xb8kKLRZBaQNdt0C9P2/PdJSaXb4kF3DPXRmmrb7devK2L3I2OnxwObJ0kd8YwYocAKPrKg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\radum\\StudentAdminPortal\\StudentAdminPortalAPI\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\radum\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\radum\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\radum\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\radum\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\radum\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\radum\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
+    "C:\\Users\\radum\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}
