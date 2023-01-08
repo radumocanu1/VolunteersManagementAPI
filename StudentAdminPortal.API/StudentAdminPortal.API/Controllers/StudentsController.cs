@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentAdminPortal.API.Repositories;
+using StudentAdminPortal.API.Services;
+using System.Threading.Tasks;
 
 namespace StudentAdminPortal.API.Controllers
 {
@@ -7,15 +9,18 @@ namespace StudentAdminPortal.API.Controllers
     public class StudentsController : Controller
     {
         private readonly IStudentRepository studentRepository;
+
+        private StudentService studentService;
+
         public StudentsController(IStudentRepository studentRepository)
         {
-         this.studentRepository= studentRepository;
+          this.studentService = new StudentService(studentRepository);
         }
         [HttpGet]
         [Route("[controller]")]
-        public IActionResult GetAllStudents()
+        public async Task<IActionResult> GetAllStudents()
         {
-            return Ok(studentRepository.GetStudents());
+            return Ok( await studentService.GetAllStudentAsync());
         }
     }
 }

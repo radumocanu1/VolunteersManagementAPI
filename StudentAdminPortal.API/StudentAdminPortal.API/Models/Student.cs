@@ -13,8 +13,11 @@ namespace StudentAdminPortal.API.Models
         public string Email { get; set; }   
         public string PhoneNumber { get; set; }
         public string ProfileImageUrl { get; set; }
+        //this field should not be serialized
         public Guid GenderId { get; set; }
         public Gender Gender { get; set; }
+
+        //this field should not be serialized ( configured custom dto onject for this purpose)
         public Address Address { get; set; }
     }
 }
