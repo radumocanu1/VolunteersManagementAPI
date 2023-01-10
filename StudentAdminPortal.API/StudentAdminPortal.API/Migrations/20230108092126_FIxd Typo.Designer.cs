@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StudentAdminPortal.API.Models;
+using VolunteersManagement.API.Models;
 
 namespace StudentAdminPortal.API.Migrations
 {
-    [DbContext(typeof(StudentAdminContext))]
+    [DbContext(typeof(VolunteerManagementContext))]
     [Migration("20230108092126_FIxd Typo")]
     partial class FIxdTypo
     {

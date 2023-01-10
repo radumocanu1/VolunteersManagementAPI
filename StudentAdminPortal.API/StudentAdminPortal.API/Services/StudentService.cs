@@ -1,10 +1,10 @@
 ﻿using StudentAdminPortal.API.DomainModels;
-using StudentAdminPortal.API.Models;
-using StudentAdminPortal.API.Repositories;
+using VolunteersManagement.API.Models;
+using VolunteersManagement.API.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace StudentAdminPortal.API.Services
+namespace VolunteersManagement.API.Services
 {
     public class StudentService
     {
@@ -14,27 +14,27 @@ namespace StudentAdminPortal.API.Services
         {
             this.studentRepository = studentRepository;
         }
-        public async Task<List<DtoStudent>> GetAllStudentAsync()
+        public async Task<List<DtoVolunteer>> GetAllStudentAsync()
         {
-            var students = await studentRepository.GetStudentsAsync();
-            var dtoStudentsList = new List<DtoStudent>();
-            foreach (var student in students)
+            var volunteers = await studentRepository.GetVolunteersAsync();
+            var dtoVolunteersList = new List<DtoVolunteer>();
+            foreach (var volunteer in volunteers)
             {
-                dtoStudentsList.Add(ConvertToDto(student));
+                dtoVolunteersList.Add(ConvertToDto(volunteer));
             }
-            return dtoStudentsList;
+            return dtoVolunteersList;
         }
-        private DtoStudent ConvertToDto(Student student)
+        private DtoVolunteer ConvertToDto(Volunteer volunteer)
         {
-            return new DtoStudent()
+            return new DtoVolunteer()
             {
-                Id = student.Id,
-                FirstName = student.FirstName,
-                LastName = student.LastName,
-                DateOfBirth = student.DateOfBirth,
-                Email = student.Email,
-                ProfileImageUrl = student.ProfileImageUrl,
-                Gender = student.Gender
+                Id = volunteer.Id,
+                FirstName = volunteer.FirstName,
+                LastName = volunteer.LastName,
+                DateOfBirth = volunteer.DateOfBirth,
+                Email = volunteer.Email,
+                ProfileImageUrl = volunteer.ProfileImageUrl,
+                Gender = volunteer.Gender
             };
         }
 

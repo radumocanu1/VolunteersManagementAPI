@@ -1,11 +1,12 @@
-﻿using StudentAdminPortal.API.Models;
+﻿
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VolunteersManagement.API.Models;
 
-namespace StudentAdminPortal.API.Repositories
+namespace VolunteersManagement.API.Repositories
 {
     public interface IStudentRepository
     {
-        Task<List<Student>> GetStudentsAsync();
+        Task<List<Volunteer>> GetVolunteersAsync();
     }
 }

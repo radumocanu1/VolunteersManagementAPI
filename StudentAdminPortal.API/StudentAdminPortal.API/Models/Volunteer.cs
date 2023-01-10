@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net.Sockets;
 
-namespace StudentAdminPortal.API.Models
+namespace VolunteersManagement.API.Models
 {
-    public class Student
+    public class Volunteer
     {
         public Guid Id { get; set; }    
         public string FirstName { get; set; }

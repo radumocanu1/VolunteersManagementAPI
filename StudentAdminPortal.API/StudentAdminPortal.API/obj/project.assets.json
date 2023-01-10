@@ -6245,9 +6245,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\radum\\StudentAdminPortal\\StudentAdminPortalAPI\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj",
-      "projectName": "StudentAdminPortal.API",
-      "projectPath": "C:\\Users\\radum\\StudentAdminPortal\\StudentAdminPortalAPI\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj",
+      "projectUniqueName": "C:\\Users\\radum\\StudentAdminPortal\\StudentAdminPortalAPI\\StudentAdminPortal.API\\StudentAdminPortal.API\\VolunteersManagement.API.csproj",
+      "projectName": "VolunteersManagement.API",
+      "projectPath": "C:\\Users\\radum\\StudentAdminPortal\\StudentAdminPortalAPI\\StudentAdminPortal.API\\StudentAdminPortal.API\\VolunteersManagement.API.csproj",
       "packagesPath": "C:\\Users\\radum\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\radum\\StudentAdminPortal\\StudentAdminPortalAPI\\StudentAdminPortal.API\\StudentAdminPortal.API\\obj\\",
       "projectStyle": "PackageReference",

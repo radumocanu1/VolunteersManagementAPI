@@ -1,18 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StudentAdminPortal.API.Repositories;
-using StudentAdminPortal.API.Services;
+using VolunteersManagement.API.Repositories;
+using VolunteersManagement.API.Services;
 using System.Threading.Tasks;
 
-namespace StudentAdminPortal.API.Controllers
+namespace VolunteersManagement.API.Controllers
 {
     [ApiController]
-    public class StudentsController : Controller
+    public class VolunteersController : Controller
     {
-        private readonly IStudentRepository studentRepository;
-
         private StudentService studentService;
 
-        public StudentsController(IStudentRepository studentRepository)
+        public VolunteersController(IStudentRepository studentRepository)
         {
           this.studentService = new StudentService(studentRepository);
         }

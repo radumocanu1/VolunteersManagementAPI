@@ -10,8 +10,8 @@ using VolunteersManagement.API.Models;
 namespace StudentAdminPortal.API.Migrations
 {
     [DbContext(typeof(VolunteerManagementContext))]
-    [Migration("20230108091144_Initial migratio")]
-    partial class Initialmigratio
+    [Migration("20230110100446_newVoulteerManagementDB")]
+    partial class newVoulteerManagementDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,12 +33,12 @@ namespace StudentAdminPortal.API.Migrations
                     b.Property<string>("PostalAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("StudentId")
+                    b.Property<Guid>("VolunteerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId")
+                    b.HasIndex("VolunteerId")
                         .IsUnique();
 
                     b.ToTable("Address");
@@ -50,7 +50,7 @@ namespace StudentAdminPortal.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Descriprion")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -58,7 +58,7 @@ namespace StudentAdminPortal.API.Migrations
                     b.ToTable("Gender");
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.Models.Student", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.Models.Volunteer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,19 +89,19 @@ namespace StudentAdminPortal.API.Migrations
 
                     b.HasIndex("GenderId");
 
-                    b.ToTable("Student");
+                    b.ToTable("Volunteer");
                 });
 
             modelBuilder.Entity("StudentAdminPortal.API.Models.Address", b =>
                 {
-                    b.HasOne("StudentAdminPortal.API.Models.Student", null)
+                    b.HasOne("StudentAdminPortal.API.Models.Volunteer", null)
                         .WithOne("Address")
-                        .HasForeignKey("StudentAdminPortal.API.Models.Address", "StudentId")
+                        .HasForeignKey("StudentAdminPortal.API.Models.Address", "VolunteerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.Models.Student", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.Models.Volunteer", b =>
                 {
                     b.HasOne("StudentAdminPortal.API.Models.Gender", "Gender")
                         .WithMany()
@@ -112,7 +112,7 @@ namespace StudentAdminPortal.API.Migrations
                     b.Navigation("Gender");
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.Models.Student", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.Models.Volunteer", b =>
                 {
                     b.Navigation("Address");
                 });

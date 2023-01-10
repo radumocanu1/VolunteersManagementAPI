@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StudentAdminPortal.API.DomainModels
+namespace VolunteersManagement.API.DomainModels
 {
     public class DtoGender
     {

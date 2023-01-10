@@ -1,9 +1,9 @@
-﻿using StudentAdminPortal.API.Models;
+﻿using VolunteersManagement.API.Models;
 using System;
 
 namespace StudentAdminPortal.API.DomainModels
 {
-    public class DtoStudent
+    public class DtoVolunteer
     {
 
         public Guid Id { get; set; }
