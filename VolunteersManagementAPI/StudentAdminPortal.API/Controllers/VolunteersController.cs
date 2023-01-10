@@ -2,23 +2,31 @@
 using VolunteersManagement.API.Repositories;
 using VolunteersManagement.API.Services;
 using System.Threading.Tasks;
+using VolunteersManagement.API.DomainModels;
 
 namespace VolunteersManagement.API.Controllers
 {
     [ApiController]
     public class VolunteersController : Controller
     {
-        private VolunteerService studentService;
+        private VolunteerService volunteerService;
 
-        public VolunteersController(IStudentRepository studentRepository)
+        public VolunteersController(IVolunteerRepository volunteerRepository)
         {
-          this.studentService = new VolunteerService(studentRepository);
+          this.volunteerService = new VolunteerService(volunteerRepository);
         }
         [HttpGet]
         [Route("[controller]")]
-        public async Task<IActionResult> GetAllStudents()
+        public async Task<IActionResult> GetAllVolunteers()
         {
-            return Ok( await studentService.GetAllStudentAsync());
+            return Ok( await volunteerService.GetAllVolunteersAsync());
         }
+        [HttpGet]
+        [Route("[controller]/byFullName/{firstName}/{lastName}")]
+        public async Task<IActionResult> GetVolunteerById(string firstName, string lastName)
+        {
+            return Ok(await volunteerService.GetVolunteerByFullNameAsync(firstName, lastName));
+        }
+
     }
 }

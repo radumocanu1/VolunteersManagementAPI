@@ -9,20 +9,24 @@ namespace VolunteersManagement.API.Services
     public class VolunteerService
     {
 
-        private readonly IStudentRepository studentRepository;
-        public VolunteerService(IStudentRepository studentRepository) 
+        private readonly IVolunteerRepository volunteerRepository;
+        public VolunteerService(IVolunteerRepository volunteerRepository) 
         {
-            this.studentRepository = studentRepository;
+            this.volunteerRepository = volunteerRepository;
         }
-        public async Task<List<DtoVolunteer>> GetAllStudentAsync()
+        public async Task<List<DtoVolunteer>> GetAllVolunteersAsync()
         {
-            var volunteers = await studentRepository.GetVolunteersAsync();
+            var volunteers = await volunteerRepository.GetVolunteersAsync();
             var dtoVolunteersList = new List<DtoVolunteer>();
             foreach (var volunteer in volunteers)
             {
                 dtoVolunteersList.Add(ConvertToDto(volunteer));
             }
             return dtoVolunteersList;
+        }
+        public async Task<Volunteer> GetVolunteerByFullNameAsync(string firstName, string lastName)
+        {
+            return await volunteerRepository.GetVolunteerByFullNameAsync(firstName, lastName);
         }
         private DtoVolunteer ConvertToDto(Volunteer volunteer)
         {
@@ -37,6 +41,7 @@ namespace VolunteersManagement.API.Services
                 Gender = volunteer.Gender
             };
         }
+        
 
     }
 }

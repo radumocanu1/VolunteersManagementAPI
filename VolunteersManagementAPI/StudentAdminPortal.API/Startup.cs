@@ -36,7 +36,7 @@ namespace VolunteersManagement.API
             services.AddDbContext<VolunteerManagementContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("StudentAdminPortalDb")));
 
-            services.AddScoped<IStudentRepository, SqlStudentRepository>();
+            services.AddScoped<IVolunteerRepository, SqlVolunteerRepository>();
 
             services.AddSwaggerGen(c =>
             {
