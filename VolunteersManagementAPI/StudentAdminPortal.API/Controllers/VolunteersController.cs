@@ -15,15 +15,17 @@ namespace VolunteersManagement.API.Controllers
         {
           this.volunteerService = new VolunteerService(volunteerRepository);
         }
+
         [HttpGet]
         [Route("[controller]")]
         public async Task<IActionResult> GetAllVolunteers()
         {
             return Ok( await volunteerService.GetAllVolunteersAsync());
         }
+
         [HttpGet]
         [Route("[controller]/byFullName/{firstName}/{lastName}")]
-        public async Task<IActionResult> GetVolunteerById(string firstName, string lastName)
+        public async Task<IActionResult> GetVolunteerByFullName(string firstName, string lastName)
         {
             return Ok(await volunteerService.GetVolunteerByFullNameAsync(firstName, lastName));
         }

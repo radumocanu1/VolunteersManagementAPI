@@ -3,6 +3,7 @@ using VolunteersManagement.API.Models;
 using VolunteersManagement.API.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VolunteersManagement.API.Services.OperationsForServices;
 
 namespace VolunteersManagement.API.Services
 {
@@ -10,37 +11,26 @@ namespace VolunteersManagement.API.Services
     {
 
         private readonly IVolunteerRepository volunteerRepository;
+        private VolunteerServiceOperations volunteerServiceOperations;
         public VolunteerService(IVolunteerRepository volunteerRepository) 
         {
             this.volunteerRepository = volunteerRepository;
+            volunteerServiceOperations = new VolunteerServiceOperations();
         }
+
         public async Task<List<DtoVolunteer>> GetAllVolunteersAsync()
         {
             var volunteers = await volunteerRepository.GetVolunteersAsync();
-            var dtoVolunteersList = new List<DtoVolunteer>();
-            foreach (var volunteer in volunteers)
-            {
-                dtoVolunteersList.Add(ConvertToDto(volunteer));
-            }
-            return dtoVolunteersList;
+            return volunteerServiceOperations.ConvertToDTOList(volunteers);
+           
         }
+
         public async Task<Volunteer> GetVolunteerByFullNameAsync(string firstName, string lastName)
         {
             return await volunteerRepository.GetVolunteerByFullNameAsync(firstName, lastName);
         }
-        private DtoVolunteer ConvertToDto(Volunteer volunteer)
-        {
-            return new DtoVolunteer()
-            {
-                Id = volunteer.Id,
-                FirstName = volunteer.FirstName,
-                LastName = volunteer.LastName,
-                DateOfBirth = volunteer.DateOfBirth,
-                Email = volunteer.Email,
-                ProfileImageUrl = volunteer.ProfileImageUrl,
-                Gender = volunteer.Gender
-            };
-        }
+        
+        
         
 
     }
