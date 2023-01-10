@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StudentAdminPortal.API.Models
+namespace VolunteersManagement.API.Models
 {
     public class Gender
     {

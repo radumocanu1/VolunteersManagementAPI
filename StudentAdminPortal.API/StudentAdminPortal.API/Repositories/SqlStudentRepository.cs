@@ -1,22 +1,21 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using StudentAdminPortal.API.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using VolunteersManagement.API.Models;
 
-namespace StudentAdminPortal.API.Repositories
+namespace VolunteersManagement.API.Repositories
 {
     public class SqlStudentRepository : IStudentRepository
     {
-        private readonly StudentAdminContext context;
-        public SqlStudentRepository(StudentAdminContext context)
+        private readonly VolunteerManagementContext context;
+        public SqlStudentRepository(VolunteerManagementContext context)
         {
             this.context = context; 
         }
-        public async Task<List<Student>> GetStudentsAsync()
+        public async Task<List<Volunteer>> GetVolunteersAsync()
         {
-            return await context.Student.Include(nameof(Gender)).Include(nameof(Address)).ToListAsync();
+            return await context.Volunteer.Include(nameof(Gender)).Include(nameof(Address)).ToListAsync();
         }
     }
 }
