@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace VolunteersManagement.API.Services
 {
-    public class StudentService
+    public class VolunteerService
     {
 
         private readonly IStudentRepository studentRepository;
-        public StudentService(IStudentRepository studentRepository) 
+        public VolunteerService(IStudentRepository studentRepository) 
         {
             this.studentRepository = studentRepository;
         }

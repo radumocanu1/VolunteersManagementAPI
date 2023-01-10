@@ -8,11 +8,11 @@ namespace VolunteersManagement.API.Controllers
     [ApiController]
     public class VolunteersController : Controller
     {
-        private StudentService studentService;
+        private VolunteerService studentService;
 
         public VolunteersController(IStudentRepository studentRepository)
         {
-          this.studentService = new StudentService(studentRepository);
+          this.studentService = new VolunteerService(studentRepository);
         }
         [HttpGet]
         [Route("[controller]")]
