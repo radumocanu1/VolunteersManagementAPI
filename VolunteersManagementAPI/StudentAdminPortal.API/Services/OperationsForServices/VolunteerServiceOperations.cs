@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using VolunteersManagement.API.DomainModels;
 using VolunteersManagement.API.Models;
 
@@ -16,7 +18,7 @@ namespace VolunteersManagement.API.Services.OperationsForServices
             }
             return dtoVolunteersList;
         }
-        private DtoVolunteer ConvertToDto(Volunteer volunteer)
+        public DtoVolunteer ConvertToDto(Volunteer volunteer)
         {
             return new DtoVolunteer()
             {
@@ -28,6 +30,11 @@ namespace VolunteersManagement.API.Services.OperationsForServices
                 ProfileImageUrl = volunteer.ProfileImageUrl,
                 Gender = volunteer.Gender
             };
+        }
+
+        internal Task<DtoVolunteer> ConvertToDto(object value)
+        {
+            throw new NotImplementedException();
         }
     }
 }

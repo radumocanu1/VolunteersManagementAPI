@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VolunteersManagement.API.Models;
@@ -21,5 +22,12 @@ namespace VolunteersManagement.API.Repositories
         {
             return await context.Volunteer.FirstOrDefaultAsync(v => v.FirstName == FirstName && v.LastName == LastName);
         }
+
+        public async Task<Volunteer> GetVolunteerByIdAsync(Guid id)
+        {
+            return await context.Volunteer.Include(nameof(Gender)).Include(nameof(Address)).FirstOrDefaultAsync(v => v.Id == id);
+        }
+
+      
     }
 }

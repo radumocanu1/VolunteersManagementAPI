@@ -18,7 +18,7 @@ namespace VolunteersManagement.API.Models
         public Guid GenderId { get; set; }
         public Gender Gender { get; set; }
 
-        //this field should not be serialized ( configured custom dto onject for this purpose)
+        //this field should not be serialized ( configured custom dto object for this purpose)
         public Address Address { get; set; }
     }
 }

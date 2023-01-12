@@ -3,6 +3,7 @@ using VolunteersManagement.API.Repositories;
 using VolunteersManagement.API.Services;
 using System.Threading.Tasks;
 using VolunteersManagement.API.DomainModels;
+using System;
 
 namespace VolunteersManagement.API.Controllers
 {
@@ -28,6 +29,16 @@ namespace VolunteersManagement.API.Controllers
         public async Task<IActionResult> GetVolunteerByFullName(string firstName, string lastName)
         {
             return Ok(await volunteerService.GetVolunteerByFullNameAsync(firstName, lastName));
+        }
+        [HttpGet]
+        [Route("[controller]/{volunteerId:guid}")]
+        public async Task<IActionResult> getVolunteerByIdAsync([FromRoute]Guid volunteerId)
+        {
+            var volunteer = await volunteerService.GetVolunteerByIdAsync(volunteerId);
+            if (volunteer == null)
+                return NotFound("No volunteer with the following Id was found in the DataBase;");
+            return Ok(volunteer);
+
         }
 
     }
