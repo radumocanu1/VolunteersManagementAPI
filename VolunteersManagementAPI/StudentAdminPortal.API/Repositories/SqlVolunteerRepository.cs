@@ -28,6 +28,9 @@ namespace VolunteersManagement.API.Repositories
             return await context.Volunteer.Include(nameof(Gender)).Include(nameof(Address)).FirstOrDefaultAsync(v => v.Id == id);
         }
 
-      
+        public async Task<List<Gender>> GetGendersAsync()
+        {
+           return await context.Gender.ToListAsync();
+        }
     }
 }

@@ -21,7 +21,11 @@ namespace VolunteersManagement.API.Controllers
         [Route("[controller]")]
         public async Task<IActionResult> GetAllVolunteers()
         {
-            return Ok( await volunteerService.GetAllVolunteersAsync());
+            var volunteerList = await volunteerService.GetAllVolunteersAsync();
+            if (volunteerList == null)
+                return NotFound();
+            
+            return Ok(volunteerList);
         }
 
         [HttpGet]

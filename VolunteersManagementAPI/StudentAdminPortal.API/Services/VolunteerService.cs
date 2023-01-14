@@ -1,17 +1,15 @@
 ﻿using VolunteersManagement.API.DomainModels;
 using VolunteersManagement.API.Models;
 using VolunteersManagement.API.Repositories;
-using VolunteersManagement.API.Services;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using VolunteersManagement.API.Services.OperationsForServices;
 using System;
-using Microsoft.AspNetCore.Http;
 
 namespace VolunteersManagement.API.Services
 {
-    public class VolunteerService : IActionResult
+    public class VolunteerService
     {
 
         private readonly IVolunteerRepository volunteerRepository;
@@ -30,7 +28,7 @@ namespace VolunteersManagement.API.Services
         public async Task<List<DtoVolunteer>> GetAllVolunteersAsync()
         {
             var volunteers = await volunteerRepository.GetVolunteersAsync();
-            return volunteerServiceOperations.ConvertToDTOList(volunteers);
+            return ConvertToDTOList(volunteers);
            
         }
 
@@ -45,8 +43,16 @@ namespace VolunteersManagement.API.Services
                 return null;
             return volunteerServiceOperations.ConvertToDto(volunteer);
         }
-        
-        
+        private List<DtoVolunteer> ConvertToDTOList(List<Volunteer> volunteers)
+        {
+            var dtoVolunteersList = new List<DtoVolunteer>();
+            foreach (var volunteer in volunteers)
+            {
+                dtoVolunteersList.Add(volunteerServiceOperations.ConvertToDto(volunteer));
+            }
+            return dtoVolunteersList;
+        }
+
 
     }
 }

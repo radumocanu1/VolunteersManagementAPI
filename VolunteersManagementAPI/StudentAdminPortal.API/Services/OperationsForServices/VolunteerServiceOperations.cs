@@ -9,15 +9,7 @@ namespace VolunteersManagement.API.Services.OperationsForServices
     public class VolunteerServiceOperations
     {
 
-        public List<DtoVolunteer> ConvertToDTOList(List<Volunteer> volunteers)
-        {
-            var dtoVolunteersList = new List<DtoVolunteer>();
-            foreach (var volunteer in volunteers)
-            {
-                dtoVolunteersList.Add(ConvertToDto(volunteer));
-            }
-            return dtoVolunteersList;
-        }
+        
         public DtoVolunteer ConvertToDto(Volunteer volunteer)
         {
             return new DtoVolunteer()
@@ -32,9 +24,5 @@ namespace VolunteersManagement.API.Services.OperationsForServices
             };
         }
 
-        internal Task<DtoVolunteer> ConvertToDto(object value)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
