@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VolunteersManagement.API.DomainModels
+namespace VolunteersManagement.API.DomainModels.DtoObjects
 {
     public class DtoAddress
     {

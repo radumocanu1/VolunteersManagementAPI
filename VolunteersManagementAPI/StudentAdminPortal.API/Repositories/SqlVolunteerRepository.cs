@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using VolunteersManagement.API.Models;
 
@@ -31,6 +32,35 @@ namespace VolunteersManagement.API.Repositories
         public async Task<List<Gender>> GetGendersAsync()
         {
            return await context.Gender.ToListAsync();
+        }
+
+      
+        public async Task<bool> Exist(Guid id)
+        {
+            return await context.Volunteer.AnyAsync(v => v.Id == id);
+        }
+
+        public async Task<Volunteer> updateVolunteerAsync(Volunteer volunteer)
+        {
+            var volunteerToUpdate = await GetVolunteerByIdAsync(volunteer.Id);
+            if (volunteerToUpdate != null)
+            {
+                volunteerToUpdate.PhoneNumber = volunteer.PhoneNumber;
+                volunteerToUpdate.LastName = volunteer.LastName;
+                volunteerToUpdate.FirstName = volunteer.FirstName;
+                volunteerToUpdate.GenderId= volunteer.GenderId;
+                volunteerToUpdate.Address = volunteer.Address;
+                volunteerToUpdate.Email = volunteer.Email;
+                volunteerToUpdate.DateOfBirth = volunteer.DateOfBirth;
+                await context.SaveChangesAsync();
+                return volunteerToUpdate;
+            }
+            return null;
+        }
+
+        public async Task<Gender> GetGenderByIdAsync(Guid id)
+        {
+            return await context.Gender.FirstOrDefaultAsync(g => g.Id == id);
         }
     }
 }

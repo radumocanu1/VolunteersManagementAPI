@@ -4,6 +4,8 @@ using VolunteersManagement.API.Services;
 using System.Threading.Tasks;
 using VolunteersManagement.API.DomainModels;
 using System;
+using VolunteersManagement.API.DomainModels.UpdateObjects;
+using VolunteersManagement.API.Models;
 
 namespace VolunteersManagement.API.Controllers
 {
@@ -32,13 +34,26 @@ namespace VolunteersManagement.API.Controllers
         [Route("[controller]/byFullName/{firstName}/{lastName}")]
         public async Task<IActionResult> GetVolunteerByFullName(string firstName, string lastName)
         {
-            return Ok(await volunteerService.GetVolunteerByFullNameAsync(firstName, lastName));
+            var volunteer = await volunteerService.GetVolunteerByFullNameAsync(firstName, lastName);
+            if (volunteer == null)
+                return NotFound("No volunteer with the following name was found in the DataBase;");
+            return Ok(volunteer);
         }
         [HttpGet]
         [Route("[controller]/{volunteerId:guid}")]
         public async Task<IActionResult> getVolunteerByIdAsync([FromRoute]Guid volunteerId)
         {
             var volunteer = await volunteerService.GetVolunteerByIdAsync(volunteerId);
+            if (volunteer == null)
+                return NotFound("No volunteer with the following Id was found in the DataBase;");
+            return Ok(volunteer);
+
+        }
+        [HttpPut]
+        [Route("[controller]/{volunteerId:guid}")]
+        public async Task<IActionResult> UpdateVolunteerAsync([FromRoute] Guid volunteerId, [FromBody] UpdateVolunteer updateVolunteer)
+        {
+            var volunteer = await volunteerService.UpdateVolunteerByIdAsync(volunteerId,updateVolunteer);
             if (volunteer == null)
                 return NotFound("No volunteer with the following Id was found in the DataBase;");
             return Ok(volunteer);

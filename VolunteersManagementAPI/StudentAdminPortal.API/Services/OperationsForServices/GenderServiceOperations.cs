@@ -1,4 +1,4 @@
-﻿using VolunteersManagement.API.DomainModels;
+﻿using VolunteersManagement.API.DomainModels.DtoObjects;
 using VolunteersManagement.API.Models;
 
 namespace VolunteersManagement.API.Services.OperationsForServices

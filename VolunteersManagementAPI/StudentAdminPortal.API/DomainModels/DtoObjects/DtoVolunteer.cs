@@ -1,7 +1,7 @@
 ﻿using VolunteersManagement.API.Models;
 using System;
 
-namespace VolunteersManagement.API.DomainModels
+namespace VolunteersManagement.API.DomainModels.DtoObjects
 {
     public class DtoVolunteer
     {
@@ -17,4 +17,4 @@ namespace VolunteersManagement.API.DomainModels
         public Gender Gender { get; set; }
     }
 }
-        
+

@@ -15,5 +15,11 @@ namespace VolunteersManagement.API.Repositories
 
         Task<List<Gender>> GetGendersAsync();
 
+        Task<bool> Exist(Guid id);
+
+        Task<Volunteer> updateVolunteerAsync(Volunteer volunteer);
+
+        Task<Gender> GetGenderByIdAsync(Guid id);
+
     }
 }

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VolunteersManagement.API.DomainModels;
+using VolunteersManagement.API.DomainModels.DtoObjects;
+using VolunteersManagement.API.DomainModels.UpdateObjects;
 using VolunteersManagement.API.Models;
 
 namespace VolunteersManagement.API.Services.OperationsForServices
@@ -9,12 +10,12 @@ namespace VolunteersManagement.API.Services.OperationsForServices
     public class VolunteerServiceOperations
     {
 
-        
         public DtoVolunteer ConvertToDto(Volunteer volunteer)
         {
             return new DtoVolunteer()
             {
                 Id = volunteer.Id,
+                PhoneNumber= volunteer.PhoneNumber,
                 FirstName = volunteer.FirstName,
                 LastName = volunteer.LastName,
                 DateOfBirth = volunteer.DateOfBirth,

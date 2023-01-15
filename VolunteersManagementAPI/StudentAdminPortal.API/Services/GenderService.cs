@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using VolunteersManagement.API.DomainModels;
+using VolunteersManagement.API.DomainModels.DtoObjects;
 using VolunteersManagement.API.Models;
 using VolunteersManagement.API.Repositories;
 using VolunteersManagement.API.Services.OperationsForServices;

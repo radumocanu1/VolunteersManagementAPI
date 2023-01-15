@@ -1,11 +1,13 @@
-﻿using VolunteersManagement.API.DomainModels;
-using VolunteersManagement.API.Models;
+﻿using VolunteersManagement.API.Models;
 using VolunteersManagement.API.Repositories;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using VolunteersManagement.API.Services.OperationsForServices;
 using System;
+using VolunteersManagement.API.DomainModels.DtoObjects;
+using VolunteersManagement.API.DomainModels.UpdateObjects;
+using System.Diagnostics;
 
 namespace VolunteersManagement.API.Services
 {
@@ -43,6 +45,16 @@ namespace VolunteersManagement.API.Services
                 return null;
             return volunteerServiceOperations.ConvertToDto(volunteer);
         }
+        public async Task<DtoVolunteer> UpdateVolunteerByIdAsync(Guid volunteerId, UpdateVolunteer updateVolunteer)
+        {
+             
+            if (await volunteerRepository.Exist(volunteerId))
+            {
+                var updatedVolunteer = await volunteerRepository.updateVolunteerAsync(await ConvertToVolunteer(volunteerId, updateVolunteer));
+                return volunteerServiceOperations.ConvertToDto(updatedVolunteer);
+            }
+            return null;
+        }
         private List<DtoVolunteer> ConvertToDTOList(List<Volunteer> volunteers)
         {
             var dtoVolunteersList = new List<DtoVolunteer>();
@@ -51,6 +63,23 @@ namespace VolunteersManagement.API.Services
                 dtoVolunteersList.Add(volunteerServiceOperations.ConvertToDto(volunteer));
             }
             return dtoVolunteersList;
+        }
+
+        private async Task<Volunteer> ConvertToVolunteer(Guid id, UpdateVolunteer updateVolunteer)
+        {
+            return new Volunteer()
+            {
+                Id = id,
+                GenderId = updateVolunteer.GenderId,
+                Gender = await volunteerRepository.GetGenderByIdAsync(updateVolunteer.GenderId),
+                FirstName = updateVolunteer.FirstName,
+                LastName = updateVolunteer.LastName,
+                Email = updateVolunteer.Email,
+                PhoneNumber = updateVolunteer.PhoneNumber,
+                DateOfBirth = DateTime.Parse(updateVolunteer.DateOfBirth),
+                Address = null,
+                ProfileImageUrl = updateVolunteer?.ProfileImageUrl,
+            };
         }
 
 
