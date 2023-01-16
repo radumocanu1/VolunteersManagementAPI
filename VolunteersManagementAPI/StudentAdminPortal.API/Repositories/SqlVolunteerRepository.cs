@@ -62,5 +62,24 @@ namespace VolunteersManagement.API.Repositories
         {
             return await context.Gender.FirstOrDefaultAsync(g => g.Id == id);
         }
+
+        public async Task<Volunteer> DeleteVolunteerByIdAsync(Guid id)
+        {
+            var volunteerToDelete = await GetVolunteerByIdAsync(id);
+            if (volunteerToDelete != null)
+            {
+                context.Volunteer.Remove(volunteerToDelete);
+                await context.SaveChangesAsync();
+                return volunteerToDelete;
+            }
+            return null;
+        }
+
+        public async Task<Volunteer> AddVolunteerAsync(Volunteer volunteer)
+        {
+            var addedVolunteer = await context.AddAsync(volunteer);
+            await context.SaveChangesAsync();
+            return addedVolunteer.Entity;
+        }
     }
 }

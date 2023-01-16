@@ -25,5 +25,21 @@ namespace VolunteersManagement.API.Services.OperationsForServices
             };
         }
 
+        public DtoVolunteerAdmin ConvertToDtoAdmin(Volunteer volunteer)
+        {
+            return new DtoVolunteerAdmin()
+            {
+                Id = volunteer.Id,
+                PhoneNumber = volunteer.PhoneNumber,
+                FirstName = volunteer.FirstName,
+                LastName = volunteer.LastName,
+                DateOfBirth = volunteer.DateOfBirth,
+                Email = volunteer.Email,
+                ProfileImageUrl = volunteer.ProfileImageUrl,
+                Gender = volunteer.Gender,
+                Address= volunteer.Address
+            };
+        }
+
     }
 }

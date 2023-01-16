@@ -49,6 +49,17 @@ namespace VolunteersManagement.API.Controllers
             return Ok(volunteer);
 
         }
+        //only for admin
+        [HttpGet]
+        [Route("[controller]/admin/{volunteerId:guid}")]
+        public async Task<IActionResult> getVolunteerByIdAdminAsync([FromRoute] Guid volunteerId)
+        {
+            var volunteer = await volunteerService.GetVolunteerByIdAsyncAdmin(volunteerId);
+            if (volunteer == null)
+                return NotFound("No volunteer with the following Id was found in the DataBase;");
+            return Ok(volunteer);
+
+        }
         [HttpPut]
         [Route("[controller]/{volunteerId:guid}")]
         public async Task<IActionResult> UpdateVolunteerAsync([FromRoute] Guid volunteerId, [FromBody] UpdateVolunteer updateVolunteer)
@@ -58,6 +69,24 @@ namespace VolunteersManagement.API.Controllers
                 return NotFound("No volunteer with the following Id was found in the DataBase;");
             return Ok(volunteer);
 
+        }
+        
+
+        [HttpDelete]
+        [Route("[controller]/{volunteerId:guid}")]
+        public async Task<IActionResult> UpdateVolunteerAsync([FromRoute] Guid volunteerId)
+        {
+            var volunteer = await volunteerService.DeleteVolunteerByIdAsync(volunteerId);
+            if (volunteer == null)
+                return NotFound("No volunteer with the following Id was found in the DataBase;");
+            return Ok(volunteer);
+        }
+        [HttpPost]
+        [Route("[controller]/Add")]
+        public async Task<IActionResult> CreateVolunteerAsync([FromBody] CreateVolunteer createVolunteer)
+        {
+            
+            return  Ok(await volunteerService.CreateVolunteerAsync(createVolunteer));
         }
 
     }

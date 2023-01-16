@@ -21,5 +21,8 @@ namespace VolunteersManagement.API.Repositories
 
         Task<Gender> GetGenderByIdAsync(Guid id);
 
+        Task<Volunteer> DeleteVolunteerByIdAsync(Guid id);
+
+        Task<Volunteer> AddVolunteerAsync(Volunteer volunteer);
     }
 }

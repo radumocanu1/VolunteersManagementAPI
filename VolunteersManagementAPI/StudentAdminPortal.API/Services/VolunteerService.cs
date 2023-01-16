@@ -22,10 +22,6 @@ namespace VolunteersManagement.API.Services
             volunteerServiceOperations = new VolunteerServiceOperations();
         }
 
-        public System.Threading.Tasks.Task ExecuteResultAsync(ActionContext context)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<List<DtoVolunteer>> GetAllVolunteersAsync()
         {
@@ -33,6 +29,7 @@ namespace VolunteersManagement.API.Services
             return ConvertToDTOList(volunteers);
            
         }
+  
 
         public async Task<Volunteer> GetVolunteerByFullNameAsync(string firstName, string lastName)
         {
@@ -45,6 +42,13 @@ namespace VolunteersManagement.API.Services
                 return null;
             return volunteerServiceOperations.ConvertToDto(volunteer);
         }
+        public async Task<DtoVolunteerAdmin> GetVolunteerByIdAsyncAdmin(Guid id)
+        {
+            var volunteer = await volunteerRepository.GetVolunteerByIdAsync(id);
+            if (volunteer == null)
+                return null;
+            return volunteerServiceOperations.ConvertToDtoAdmin(volunteer);
+        }
         public async Task<DtoVolunteer> UpdateVolunteerByIdAsync(Guid volunteerId, UpdateVolunteer updateVolunteer)
         {
              
@@ -55,6 +59,22 @@ namespace VolunteersManagement.API.Services
             }
             return null;
         }
+
+        public async Task<DtoVolunteer> DeleteVolunteerByIdAsync(Guid volunteerId)
+        {
+            if (await volunteerRepository.Exist(volunteerId))
+            {
+                var deletedVolunteer =  await volunteerRepository.DeleteVolunteerByIdAsync(volunteerId);
+                return volunteerServiceOperations.ConvertToDto(deletedVolunteer);
+            }
+            return null;
+        }
+
+        public async Task<DtoVolunteerAdmin> CreateVolunteerAsync(CreateVolunteer createVolunteer)
+        {
+            var createdVolunteer = await volunteerRepository.AddVolunteerAsync(await ConvertToVolunteer(createVolunteer));
+            return volunteerServiceOperations.ConvertToDtoAdmin(createdVolunteer);
+        }
         private List<DtoVolunteer> ConvertToDTOList(List<Volunteer> volunteers)
         {
             var dtoVolunteersList = new List<DtoVolunteer>();
@@ -64,7 +84,22 @@ namespace VolunteersManagement.API.Services
             }
             return dtoVolunteersList;
         }
-
+        private async Task<Volunteer> ConvertToVolunteer(CreateVolunteer createVolunteer)
+        {
+            var newVolunteer =  new Volunteer()
+            {
+                GenderId = createVolunteer.GenderId,
+                Gender = await volunteerRepository.GetGenderByIdAsync(createVolunteer.GenderId),
+                FirstName = createVolunteer.FirstName,
+                LastName = createVolunteer.LastName,
+                Email = createVolunteer.Email,
+                PhoneNumber = createVolunteer.PhoneNumber,
+                DateOfBirth = DateTime.Parse(createVolunteer.DateOfBirth),
+                ProfileImageUrl = createVolunteer.ProfileImageUrl
+            };
+            newVolunteer.Address = CreateAdress(createVolunteer.PostalAddress, createVolunteer.PhysicalAddress, newVolunteer.Id);
+            return newVolunteer;
+        }
         private async Task<Volunteer> ConvertToVolunteer(Guid id, UpdateVolunteer updateVolunteer)
         {
             return new Volunteer()
@@ -78,9 +113,20 @@ namespace VolunteersManagement.API.Services
                 PhoneNumber = updateVolunteer.PhoneNumber,
                 DateOfBirth = DateTime.Parse(updateVolunteer.DateOfBirth),
                 Address = null,
-                ProfileImageUrl = updateVolunteer?.ProfileImageUrl,
+                ProfileImageUrl = updateVolunteer?.ProfileImageUrl
             };
         }
+   
+        private Address CreateAdress(string PostalAddress, string PhysicalAddress, Guid id)
+        {
+            return new Address()
+            {
+                VolunteerId= id,
+                PostalAddress= PostalAddress,
+                PhysicalAddress= PhysicalAddress,
+            };
+        }
+
 
 
     }

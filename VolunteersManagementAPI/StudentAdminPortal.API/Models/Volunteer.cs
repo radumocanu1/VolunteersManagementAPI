@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Sockets;
 using System.Reflection;
 
@@ -6,6 +8,8 @@ namespace VolunteersManagement.API.Models
 {
     public class Volunteer
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
