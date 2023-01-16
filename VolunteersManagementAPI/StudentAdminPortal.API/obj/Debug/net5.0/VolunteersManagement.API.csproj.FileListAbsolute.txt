@@ -258,3 +258,5 @@ C:\Users\radum\VolunteersManagement\VolunteerManagementAPI\VolunteersManagementA
 C:\Users\radum\VolunteersManagement\VolunteerManagementAPI\VolunteersManagementAPI\VolunteersManagementAPI\StudentAdminPortal.API\obj\Debug\net5.0\VolunteersManagement.API.pdb
 C:\Users\radum\VolunteersManagement\VolunteerManagementAPI\VolunteersManagementAPI\VolunteersManagementAPI\StudentAdminPortal.API\obj\Debug\net5.0\VolunteersManagement.API.genruntimeconfig.cache
 C:\Users\radum\VolunteersManagement\VolunteerManagementAPI\VolunteersManagementAPI\VolunteersManagementAPI\StudentAdminPortal.API\obj\Debug\net5.0\ref\VolunteersManagement.API.dll
+C:\Users\radum\VolunteersManagement\VolunteerManagementAPI\VolunteersManagementAPI\VolunteersManagementAPI\StudentAdminPortal.API\bin\Debug\net5.0\VolunteersManagement.API.StaticWebAssets.xml
+C:\Users\radum\VolunteersManagement\VolunteerManagementAPI\VolunteersManagementAPI\VolunteersManagementAPI\StudentAdminPortal.API\bin\Debug\net5.0\BCrypt.Net-Core.dll

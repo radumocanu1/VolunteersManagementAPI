@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Dg1xbthAd+enhQFqX1N0XLgbHy0oWgmP8CS7rPsLlXfmZTKuYye/baWmGYGa0dB/MByatTHdKr5pTdmvM4mvMw==",
+  "dgSpecHash": "BnHCmllaCIZxPqA23rGlSNqD0oJJNKW+1svfGbq0y23qmiO7Qt05vGgJNWbtQxhSP+ru7hqqEXTzLavsDp5+hw==",
   "success": true,
   "projectFilePath": "C:\\Users\\radum\\VolunteersManagement\\VolunteerManagementAPI\\VolunteersManagementAPI\\VolunteersManagementAPI\\StudentAdminPortal.API\\VolunteersManagement.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\radum\\.nuget\\packages\\bcrypt.net-core\\1.0.2\\bcrypt.net-core.1.0.2.nupkg.sha512",
     "C:\\Users\\radum\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\radum\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\radum\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
@@ -89,6 +90,7 @@
     "C:\\Users\\radum\\.nuget\\packages\\system.runtime.serialization.json\\4.3.0\\system.runtime.serialization.json.4.3.0.nupkg.sha512",
     "C:\\Users\\radum\\.nuget\\packages\\system.runtime.serialization.primitives\\4.3.0\\system.runtime.serialization.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\radum\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\radum\\.nuget\\packages\\system.security.cryptography.algorithms\\4.1.0-rc2-24027\\system.security.cryptography.algorithms.4.1.0-rc2-24027.nupkg.sha512",
     "C:\\Users\\radum\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
     "C:\\Users\\radum\\.nuget\\packages\\system.security.cryptography.primitives\\4.3.0\\system.security.cryptography.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\radum\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.7.0\\system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",

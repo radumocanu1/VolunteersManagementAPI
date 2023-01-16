@@ -10,7 +10,7 @@ namespace VolunteersManagement.API.Services.OperationsForServices
             return new DtoGender()
             {
                 Description= gender.Description,
-                Id=gender.Id,
+                Id=gender.Id
             };
         }
     }

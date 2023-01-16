@@ -15,6 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VolunteersManagement.API.Services.OperationsForServices;
+using VolunteersManagement.API.Repositories.UserRepository;
+using VolunteersManagement.API.Services.UserService;
 
 namespace VolunteersManagement.API
 {
@@ -45,10 +48,18 @@ namespace VolunteersManagement.API
 
             services.AddControllers();
 
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IJwtUtils, JwtUtils>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IVolunteerRepository, SqlVolunteerRepository>();
+
+
             services.AddDbContext<VolunteerManagementContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("VolunteersManagementDB")));
 
-            services.AddScoped<IVolunteerRepository, SqlVolunteerRepository>();
+            
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddSwaggerGen(c =>
             {
@@ -65,6 +76,7 @@ namespace VolunteersManagement.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VolunteersManagement.API v1"));
             }
+            
 
             app.UseHttpsRedirection();
 
@@ -74,10 +86,14 @@ namespace VolunteersManagement.API
 
             app.UseAuthorization();
 
+            app.UseMiddleware<JwtMiddleware>();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
-}
+}                                                                                                                                                                                  

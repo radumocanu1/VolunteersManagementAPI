@@ -12,6 +12,8 @@ namespace VolunteersManagement.API.Models
         public DbSet<Gender> Gender { get; set; }
         public DbSet<Address> Address { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
 
     }
 }
