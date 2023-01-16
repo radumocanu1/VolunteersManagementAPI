@@ -112,7 +112,11 @@ namespace VolunteersManagement.API.Services
                 Email = updateVolunteer.Email,
                 PhoneNumber = updateVolunteer.PhoneNumber,
                 DateOfBirth = DateTime.Parse(updateVolunteer.DateOfBirth),
-                Address = null,
+                Address = new Address()
+                {
+                    PhysicalAddress= updateVolunteer.PhysicalAddress,
+                    PostalAddress = updateVolunteer.PostalAddress
+                },
                 ProfileImageUrl = updateVolunteer?.ProfileImageUrl
             };
         }

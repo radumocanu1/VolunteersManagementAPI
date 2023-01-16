@@ -12,6 +12,11 @@ namespace VolunteersManagement.API.DomainModels.UpdateObjects
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string ProfileImageUrl { get; set; }
+
+        public string PhysicalAddress { get; set; }
+
+        public string PostalAddress { get; set; }
+
         public Guid GenderId { get; set; }
     }
 }
