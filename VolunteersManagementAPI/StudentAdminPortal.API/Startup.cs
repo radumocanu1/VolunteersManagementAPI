@@ -60,6 +60,7 @@ namespace VolunteersManagement.API
 
             
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+           
 
             services.AddSwaggerGen(c =>
             {

@@ -30,11 +30,27 @@ namespace VolunteersManagement.API.Controllers
             
             return Ok(await userService.Create(userRequestDTO));
         }
+        [HttpPost("create/user")]
+        public async Task<IActionResult> CreateUser(UserRequestDTO userRequestDTO)
+        {
+
+            return Ok(await userService.CreateUser(userRequestDTO));
+        }
+        [HttpGet]
+        public async Task<IActionResult> getListOfUsersAsync()
+        {
+            var listOfUsers = await userService.GetUsers();
+
+            if (listOfUsers == null)
+                return NotFound();
+            return Ok(listOfUsers); 
+        }
+
 
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate(UserRequestDTO user)
         {
-            var response = userService.Atuhentificate(user);
+            var response = userService.Auth(user);
             if (response == null)
             {
                 return BadRequest("Username or password is invalid!");

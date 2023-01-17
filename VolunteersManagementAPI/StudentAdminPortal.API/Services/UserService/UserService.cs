@@ -49,20 +49,21 @@ namespace VolunteersManagement.API.Services.UserService
             return await repository.CreateAsync(userToCreate);
            
         }
-
-        public UserResponseDTO Atuhentificate(UserRequestDTO model)
+        public async Task<User> CreateUser(UserRequestDTO userRequestDTO)
         {
-            var user = repository.FindByUsername(model.Username);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
+            var userToCreate = new User
             {
-                return null; 
-            }
+                Username = userRequestDTO.Username,
+                Email = userRequestDTO.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(userRequestDTO.Password),
+                role = Roles.User
+            };
 
+            return await repository.CreateAsync(userToCreate);
 
-        
-            var jwtToken = jwtUtils.GenerateJwtToken(user);
-            return new UserResponseDTO(user, jwtToken);
         }
+
+
 
 
         public async Task<User> GetbyID(Guid id)
@@ -73,6 +74,11 @@ namespace VolunteersManagement.API.Services.UserService
         {
             return await repository.GetAllAsync();
         }
-        
+
+        public async Task<List<User>> GetUsers()
+        {
+            var ListOfUsers = await repository.getUsersAsync();
+            return ListOfUsers;
+        }
     }
 }

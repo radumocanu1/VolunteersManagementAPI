@@ -38,5 +38,10 @@ namespace VolunteersManagement.API.Repositories.UserRepository
             return await context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
         }
+
+        public async Task<List<User>> getUsersAsync()
+        {
+            return await context.Users.ToListAsync();
+        }
     }
 }
