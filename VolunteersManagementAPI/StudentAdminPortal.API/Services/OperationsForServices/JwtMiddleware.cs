@@ -19,12 +19,14 @@ namespace VolunteersManagement.API.Services.OperationsForServices
         public async Task Invoke(HttpContext httpContext, IUserService userService, IJwtUtils jwtUtils)
         {
             
-            var token = httpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split("").Last();
+            var token = httpContext.Request.Headers["Authorization"].FirstOrDefault();
             var userId = jwtUtils.ValidateJwtToken(token);
+       
             //user was validated
             if (userId!= Guid.Empty)
             {
-                httpContext.Items["User"]=userService.GetbyID(userId);
+                httpContext.Items["User"]=userService.GetbyID(userId).Result;
+                
             }
             await nextRequestDelegate(httpContext);
 

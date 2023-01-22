@@ -1,4 +1,5 @@
 ﻿using BCrypt.Net;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using System;
@@ -33,6 +34,7 @@ namespace VolunteersManagement.API.Services.UserService
             }
 
             var JwtToken = this.jwtUtils.GenerateJwtToken(user);
+       
             return new UserResponseDTO(user, JwtToken);
         }
 

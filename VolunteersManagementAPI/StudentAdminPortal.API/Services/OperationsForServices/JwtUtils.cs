@@ -34,6 +34,7 @@ namespace VolunteersManagement.API.Services.OperationsForServices
 
         public Guid ValidateJwtToken(string token)
         {
+            Console.WriteLine(token);
             if (token==null)
             {
                 return Guid.Empty;
@@ -41,14 +42,15 @@ namespace VolunteersManagement.API.Services.OperationsForServices
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var appPrivateKey = Encoding.ASCII.GetBytes(this.appSettings.JwtSecret);
+            Console.WriteLine(this.appSettings.JwtSecret);
 
             var tokenValidationParameters = new TokenValidationParameters()
             { 
-                ValidateIssuerSigningKey= true,
+                ValidateIssuerSigningKey= false,
                 IssuerSigningKey = new SymmetricSecurityKey(appPrivateKey),
-                ValidateIssuer= true,
+                ValidateIssuer= false,
                 ValidateAudience= false,
-                ClockSkew = TimeSpan.Zero
+               ClockSkew = TimeSpan.Zero,
             };
 
             try
@@ -60,6 +62,7 @@ namespace VolunteersManagement.API.Services.OperationsForServices
             }
             catch(Exception ex) 
             {
+                Console.WriteLine(ex.ToString());
                 return Guid.Empty;
             }
 

@@ -17,5 +17,7 @@ namespace VolunteersManagement.API.Repositories.UserRepository
         Task<User> CreateAsync(User User);
 
         Task<List<User>> getUsersAsync();
+
+        Task<User> getByIdString(String id);
     }
 }

@@ -46,6 +46,12 @@ namespace VolunteersManagement.API
                 });
             });
 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "Jwt";
+                options.DefaultChallengeScheme = "Jwt";
+            });
+
             services.AddControllers();
 
             services.AddScoped<IUserRepository, UserRepository>();
