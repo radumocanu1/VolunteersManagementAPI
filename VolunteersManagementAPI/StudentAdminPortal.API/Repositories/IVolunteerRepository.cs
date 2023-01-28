@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VolunteersManagement.API.Models;
 
@@ -24,5 +25,7 @@ namespace VolunteersManagement.API.Repositories
         Task<Volunteer> DeleteVolunteerByIdAsync(Guid id);
 
         Task<Volunteer> AddVolunteerAsync(Volunteer volunteer);
+
+        Task<IQueryable<ToDo>> GetAllTasksASync(Guid id);
     }
 }

@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace VolunteersManagement.API.Models
 {
@@ -24,5 +26,7 @@ namespace VolunteersManagement.API.Models
 
         //this field should not be serialized ( configured custom dto object for this purpose)
         public Address Address { get; set; }
+
+        public ICollection<ManyToMany> manyToMany { get; set; } 
     }
 }

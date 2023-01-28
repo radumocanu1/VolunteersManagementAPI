@@ -14,6 +14,28 @@ namespace VolunteersManagement.API.Models
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<ToDo> ToDo { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ManyToMany>()
+                .HasKey(mtm => new { mtm.VolunteerId, mtm.ToDoId});
+
+            modelBuilder.Entity<ManyToMany>()
+                .HasOne<Volunteer>(mtm => mtm.volunteer)
+                .WithMany(v => v.manyToMany)
+                .HasForeignKey(mtm => mtm.VolunteerId);
+
+
+            modelBuilder.Entity<ManyToMany>()
+               .HasOne<ToDo>(mtm => mtm.toDo)
+               .WithMany(t => t.manyToMany)
+               .HasForeignKey(mtm => mtm.ToDoId);
+
+            base.OnModelCreating(modelBuilder);
+            
+        }
+
 
     }
 }

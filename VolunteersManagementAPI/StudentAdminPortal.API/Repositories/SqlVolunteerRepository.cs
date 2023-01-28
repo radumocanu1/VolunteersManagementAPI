@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using VolunteersManagement.API.Models;
 
@@ -80,6 +81,17 @@ namespace VolunteersManagement.API.Repositories
             var addedVolunteer = await context.AddAsync(volunteer);
             await context.SaveChangesAsync();
             return addedVolunteer.Entity;
+        }
+
+        public Task<IQueryable<ToDo>> GetAllTasksASync(Guid id)
+        {
+            var tasks =
+                        from toDo in context.ToDo
+                        where toDo.manyToMany.Any(m => m.VolunteerId == id)
+                        select toDo;
+
+
+            return Task.FromResult(tasks);
         }
     }
 }

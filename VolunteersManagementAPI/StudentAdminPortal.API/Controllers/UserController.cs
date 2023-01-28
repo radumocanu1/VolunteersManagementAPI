@@ -30,6 +30,7 @@ namespace VolunteersManagement.API.Controllers
             
             return Ok(await userService.Create(userRequestDTO));
         }
+       
         [HttpPost("create/user")]
         public async Task<IActionResult> CreateUser(UserRequestDTO userRequestDTO)
         {

@@ -49,6 +49,17 @@ namespace VolunteersManagement.API.Controllers
             return Ok(volunteer);
 
         }
+        [HttpGet]
+        [Route("[controller]/tasks/{volunteerId:guid}")]
+        public async Task<IActionResult> getTasksByVolunteerIdASync([FromRoute] Guid volunteerId)
+        {
+            var tasks = await volunteerService.GetAllTasksAsync(volunteerId);
+            if (tasks == null)
+                return NotFound("No volunteer with the following Id was found in the DataBase or there isn't any task for him;");
+            return Ok(tasks);
+
+        }
+
         //only for admin
         [HttpGet]
         [Route("[controller]/admin/{volunteerId:guid}")]

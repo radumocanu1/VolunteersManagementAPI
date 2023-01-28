@@ -8,6 +8,7 @@ using System;
 using VolunteersManagement.API.DomainModels.DtoObjects;
 using VolunteersManagement.API.DomainModels.UpdateObjects;
 using System.Diagnostics;
+using System.Linq;
 
 namespace VolunteersManagement.API.Services
 {
@@ -22,7 +23,11 @@ namespace VolunteersManagement.API.Services
             volunteerServiceOperations = new VolunteerServiceOperations();
         }
 
-
+        public async Task<IQueryable<ToDo>> GetAllTasksAsync(Guid id)
+        {
+            var tasks  = await volunteerRepository.GetAllTasksASync(id);
+            return tasks;
+        }
         public async Task<List<DtoVolunteer>> GetAllVolunteersAsync()
         {
             var volunteers = await volunteerRepository.GetVolunteersAsync();
