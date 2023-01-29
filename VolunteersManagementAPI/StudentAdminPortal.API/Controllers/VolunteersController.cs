@@ -6,6 +6,9 @@ using VolunteersManagement.API.DomainModels;
 using System;
 using VolunteersManagement.API.DomainModels.UpdateObjects;
 using VolunteersManagement.API.Models;
+using Microsoft.AspNetCore.Authorization;
+using VolunteersManagement.API.Models.Enums;
+using VolunteersManagement.API.Services.OperationsForServices;
 
 namespace VolunteersManagement.API.Controllers
 {
@@ -62,6 +65,7 @@ namespace VolunteersManagement.API.Controllers
 
         //only for admin
         [HttpGet]
+ 
         [Route("[controller]/admin/{volunteerId:guid}")]
         public async Task<IActionResult> getVolunteerByIdAdminAsync([FromRoute] Guid volunteerId)
         {
@@ -72,6 +76,7 @@ namespace VolunteersManagement.API.Controllers
 
         }
         [HttpPut]
+        [Authorization(Roles.Admin)]
         [Route("[controller]/{volunteerId:guid}")]
         public async Task<IActionResult> UpdateVolunteerAsync([FromRoute] Guid volunteerId, [FromBody] UpdateVolunteer updateVolunteer)
         {
