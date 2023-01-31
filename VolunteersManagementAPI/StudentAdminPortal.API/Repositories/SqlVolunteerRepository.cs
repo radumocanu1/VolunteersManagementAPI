@@ -98,5 +98,47 @@ namespace VolunteersManagement.API.Repositories
         {
             return await context.ToDo.ToListAsync();
         }
+
+        public async Task<bool> ExistTask(Guid id)
+        {
+            return await context.ToDo.AnyAsync(t => t.Id == id);
+        }
+
+        public async Task<ToDo> updateTaskAsync(ToDo task)
+        {
+            var taskToUpdate = await GetTaskByIdAsync(task.Id);
+            if (taskToUpdate != null)
+            {
+                taskToUpdate.Priority = task.Priority;
+                taskToUpdate.Description = task.Description;
+                await context.SaveChangesAsync();
+                return taskToUpdate;
+            }
+            return null;
+        }
+
+        public async Task<ToDo> DeleteTaskByIdAsync(Guid id)
+        {
+            var taskToDelete = await GetTaskByIdAsync(id);
+            if (taskToDelete != null)
+            {
+                context.ToDo.Remove(taskToDelete);
+                await context.SaveChangesAsync();
+                return taskToDelete;
+            }
+            return null;
+        }
+
+        public async Task<ToDo> AddTaskAsync(ToDo task)
+        {
+            var addedTask = await context.AddAsync(task);
+            await context.SaveChangesAsync();
+            return addedTask.Entity;
+        }
+
+        public async Task<ToDo> GetTaskByIdAsync(Guid id)
+        {
+            return await context.ToDo.FirstOrDefaultAsync(t => t.Id == id);
+        }
     }
 }

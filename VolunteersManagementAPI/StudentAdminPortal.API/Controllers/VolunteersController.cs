@@ -90,7 +90,7 @@ namespace VolunteersManagement.API.Controllers
 
         [HttpDelete]
         [Route("[controller]/{volunteerId:guid}")]
-        public async Task<IActionResult> UpdateVolunteerAsync([FromRoute] Guid volunteerId)
+        public async Task<IActionResult> DeleteVolunteerAsync([FromRoute] Guid volunteerId)
         {
             var volunteer = await volunteerService.DeleteVolunteerByIdAsync(volunteerId);
             if (volunteer == null)
