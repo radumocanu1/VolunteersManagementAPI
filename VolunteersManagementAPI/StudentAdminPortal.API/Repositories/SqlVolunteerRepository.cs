@@ -83,7 +83,7 @@ namespace VolunteersManagement.API.Repositories
             return addedVolunteer.Entity;
         }
 
-        public Task<IQueryable<ToDo>> GetAllTasksASync(Guid id)
+        public async Task<IQueryable<ToDo>> GetAllTasksASync(Guid id)
         {
             var tasks =
                         from toDo in context.ToDo
@@ -91,7 +91,12 @@ namespace VolunteersManagement.API.Repositories
                         select toDo;
 
 
-            return Task.FromResult(tasks);
+            return await Task.FromResult(tasks);
+        }
+
+        public async Task<List<ToDo>> GetAllTasksAsync()
+        {
+            return await context.ToDo.ToListAsync();
         }
     }
 }

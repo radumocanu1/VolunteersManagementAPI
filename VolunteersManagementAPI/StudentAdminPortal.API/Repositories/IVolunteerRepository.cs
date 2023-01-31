@@ -10,6 +10,8 @@ namespace VolunteersManagement.API.Repositories
     public interface IVolunteerRepository
     {
         Task<List<Volunteer>> GetVolunteersAsync();
+
+        Task<List<ToDo>> GetAllTasksAsync();
         Task<Volunteer> GetVolunteerByFullNameAsync(string firstName, string lastName);
 
         Task<Volunteer> GetVolunteerByIdAsync(Guid id);
@@ -27,5 +29,7 @@ namespace VolunteersManagement.API.Repositories
         Task<Volunteer> AddVolunteerAsync(Volunteer volunteer);
 
         Task<IQueryable<ToDo>> GetAllTasksASync(Guid id);
+
+        
     }
 }
